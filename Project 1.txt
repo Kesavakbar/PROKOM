@@ -1,0 +1,60 @@
+# Inisialisasi data warung bakso
+menu_bakso = {
+    "Bakso Biasa": 15000,
+    "Bakso Super": 20000,
+    "Bakso Spesial": 25000,
+}
+
+pembelian_pelanggan = []
+
+# Fungsi pertama: Menampilkan menu warung bakso
+
+def tampilkan_menu():
+    print("Menu Warung Bakso:")
+    for item, harga in menu_bakso.items():
+        print(f"{item}: Rp {harga}")
+
+# Fungsi kedua: Mengambil pesanan pelanggan
+
+def ambil_pesanan():
+    pesanan = input("Masukkan pesanan (nama bakso): ")
+    if pesanan in menu_bakso:
+        pembelian_pelanggan.append((pesanan, menu_bakso[pesanan]))
+        print(f"{pesanan} telah ditambahkan ke keranjang belanja.")
+    else:
+        print("Menu tidak tersedia. Silakan pilih dari menu yang ada.")
+
+# Fungsi ketiga: Menghitung total pembelian dan cetak struk
+
+def hitung_total_dan_cetak_struk():
+    total = sum(harga for _, harga in pembelian_pelanggan)
+    print("Struk Pembelian:")
+    for pesanan, harga in pembelian_pelanggan:
+        print(f"{pesanan}: Rp {harga}")
+    print(f"Total pembelian: Rp {total}")
+
+# Main program
+if __name__ == "__main__":
+    print("Selamat datang di Warung Bakso Mama")
+    
+    while True:
+        print("\nMenu Utama:")
+        print("1. Tampilkan Menu")
+        print("2. Ambil Pesanan")
+        print("3. Selesai dan Hitung Total")
+        print("4. Keluar")
+        
+        pilihan = input("Masukkan pilihan (1/2/3/4): ")
+        
+        if pilihan == "1":
+            tampilkan_menu()
+        elif pilihan == "2":
+            ambil_pesanan()
+        elif pilihan == "3":
+            hitung_total_dan_cetak_struk()
+            break
+        elif pilihan == "4":
+            print("Terima kasih! Sampai jumpa lagi.")
+            break
+        else:
+            print("Pilihan tidak valid. Silakan pilih lagi.")
