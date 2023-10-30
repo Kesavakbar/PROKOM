@@ -2,50 +2,62 @@
 stok_mie = 100
 stok_topping = 50
 stok_minyak = 10
+stok_sayuran = 10
+
 
 # Fungsi untuk menampilkan stok bahan baku
 def tampilkan_stok():
     print("Stok Bahan Baku Restoran Mie:")
-    print(f"Mi Instan: {stok_mie} bungkus")
+    print(f"Mie: {stok_mie} bungkus")
     print(f"Topping: {stok_topping} porsi")
     print(f"Minyak Goreng: {stok_minyak} liter")
+    print(f"Sayuran: {stok_sayuran} batang")
 
 # Fungsi untuk melakukan pembelian bahan baku
 def beli_bahan_baku():
-    global stok_mie, stok_topping, stok_minyak
+    global stok_mie, stok_topping, stok_minyak, stok_sayuran
     print("Pembelian Bahan Baku:")
     
-    mie_beli = int(input("Jumlah bungkus Mi Instan yang dibeli: "))
+    mie_beli = int(input("Jumlah bungkus  Mie yang dibeli: "))
     topping_beli = int(input("Jumlah porsi Topping yang dibeli: "))
     minyak_beli = float(input("Jumlah liter Minyak Goreng yang dibeli: "))
+    sayuran_beli = float(input("Jumlah batang sayuran yang dibeli: "))
     
     stok_mie += mie_beli
     stok_topping += topping_beli
     stok_minyak += minyak_beli
+    stok_sayuran += sayuran_beli
 
     print("Pembelian selesai.")
     tampilkan_stok()
 
-# Fungsi untuk membuat mie
+# Fungsi untuk memasak mie
 def buat_mie():
-    global stok_mie, stok_topping, stok_minyak
-    print("Pembuatan Mie:")
+    global stok_mie, stok_topping, stok_minyak, stok_sayuran
+    print("Memasak Mie:")
     
-    mie_dibutuhkan = int(input("Jumlah bungkus Mi Instan yang digunakan: "))
+    mie_dibutuhkan = int(input("Jumlah bungkus  Mie yang digunakan: "))
     topping_dibutuhkan = int(input("Jumlah porsi Topping yang digunakan: "))
     minyak_dibutuhkan = float(input("Jumlah liter Minyak Goreng yang digunakan: "))
-    
-    if stok_mie >= mie_dibutuhkan and stok_topping >= topping_dibutuhkan and stok_minyak >= minyak_dibutuhkan:
-        print("Mie berhasil dibuat.")
+    sayuran_dibutuhkan = float(input("Jumlah batang sayuran yag digunakan: "))
+
+    if stok_mie >= mie_dibutuhkan and stok_topping >= topping_dibutuhkan and stok_minyak >= minyak_dibutuhkan >= sayuran_dibutuhkan :
+        print("Mie berhasil dimasak.")
         stok_mie -= mie_dibutuhkan
         stok_topping -= topping_dibutuhkan
         stok_minyak -= minyak_dibutuhkan
+        stok_sayuran -= sayuran_dibutuhkan
+
     else:
-        print("Stok bahan baku tidak mencukupi. Mie gagal dibuat.")
+        print("Stok bahan baku tidak mencukupi. Mie gagal dimasak.")
     
     tampilkan_stok()
 
-# Program utama
+# Program Memasak Mie
+print("---------------")
+print("Selamat Memasak")
+print("---------------")
+
 while True:
     print("\nMenu:")
     print("1. Tampilkan Stok")
@@ -53,7 +65,7 @@ while True:
     print("3. Buat Mie")
     print("4. Keluar")
     
-    pilihan = input("Pilih menu (1/2/3/4): ")
+    pilihan = input("Pilih menu [1] [2] [3] [4]: ")
     
     if pilihan == '1':
         tampilkan_stok()
