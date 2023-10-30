@@ -1,0 +1,68 @@
+# stok awal bahan baku
+stok_mie = 100
+stok_topping = 50
+stok_minyak = 10
+
+# Fungsi untuk menampilkan stok bahan baku
+def tampilkan_stok():
+    print("Stok Bahan Baku Restoran Mie:")
+    print(f"Mi Instan: {stok_mie} bungkus")
+    print(f"Topping: {stok_topping} porsi")
+    print(f"Minyak Goreng: {stok_minyak} liter")
+
+# Fungsi untuk melakukan pembelian bahan baku
+def beli_bahan_baku():
+    global stok_mie, stok_topping, stok_minyak
+    print("Pembelian Bahan Baku:")
+    
+    mie_beli = int(input("Jumlah bungkus Mi Instan yang dibeli: "))
+    topping_beli = int(input("Jumlah porsi Topping yang dibeli: "))
+    minyak_beli = float(input("Jumlah liter Minyak Goreng yang dibeli: "))
+    
+    stok_mie += mie_beli
+    stok_topping += topping_beli
+    stok_minyak += minyak_beli
+
+    print("Pembelian selesai.")
+    tampilkan_stok()
+
+# Fungsi untuk membuat mie
+def buat_mie():
+    global stok_mie, stok_topping, stok_minyak
+    print("Pembuatan Mie:")
+    
+    mie_dibutuhkan = int(input("Jumlah bungkus Mi Instan yang digunakan: "))
+    topping_dibutuhkan = int(input("Jumlah porsi Topping yang digunakan: "))
+    minyak_dibutuhkan = float(input("Jumlah liter Minyak Goreng yang digunakan: "))
+    
+    if stok_mie >= mie_dibutuhkan and stok_topping >= topping_dibutuhkan and stok_minyak >= minyak_dibutuhkan:
+        print("Mie berhasil dibuat.")
+        stok_mie -= mie_dibutuhkan
+        stok_topping -= topping_dibutuhkan
+        stok_minyak -= minyak_dibutuhkan
+    else:
+        print("Stok bahan baku tidak mencukupi. Mie gagal dibuat.")
+    
+    tampilkan_stok()
+
+# Program utama
+while True:
+    print("\nMenu:")
+    print("1. Tampilkan Stok")
+    print("2. Beli Bahan Baku")
+    print("3. Buat Mie")
+    print("4. Keluar")
+    
+    pilihan = input("Pilih menu (1/2/3/4): ")
+    
+    if pilihan == '1':
+        tampilkan_stok()
+    elif pilihan == '2':
+        beli_bahan_baku()
+    elif pilihan == '3':
+        buat_mie()
+    elif pilihan == '4':
+        print("Terima kasih, program selesai.")
+        break
+    else:
+        print("Pilihan tidak valid. Silakan pilih menu yang benar.")
